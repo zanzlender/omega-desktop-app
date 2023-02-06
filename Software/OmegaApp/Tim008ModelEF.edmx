@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PI20_008_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FAQ">
+          <Key>
+            <PropertyRef Name="FAQID" />
+          </Key>
+          <Property Name="FAQID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pitanje" Type="varchar(max)" Nullable="false" />
+          <Property Name="Odgovor" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Natjecaj">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Obrasci">
+          <Key>
+            <PropertyRef Name="ObrazacID" />
+          </Key>
+          <Property Name="ObrazacID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="URL" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Datum" Type="date" Nullable="false" />
+          <Property Name="Objavio" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PredloziKolegu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TelefonskiBroj" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adresa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DrustvenaMreza" Type="varchar" MaxLength="50" />
+          <Property Name="PismoZamolbe" Type="varchar(max)" />
+          <Property Name="Zivotopis" Type="varbinary(max)" />
+          <Property Name="IDTipPrijave" Type="int" Nullable="false" />
+          <Property Name="IDRadnoMjesto" Type="int" Nullable="false" />
+          <Property Name="IDNatjecaj" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RadnoMjesto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StrateskiDokumenti">
+          <Key>
+            <PropertyRef Name="StrateskiDokumentID" />
+          </Key>
+          <Property Name="StrateskiDokumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="URL" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Datum" Type="date" Nullable="false" />
+          <Property Name="Objavio" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipPrijave">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UputeZaRad">
+          <Key>
+            <PropertyRef Name="UputeZaRadID" />
+          </Key>
+          <Property Name="UputeZaRadID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="URL" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Datum" Type="date" Nullable="false" />
+          <Property Name="Objavio" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_PredloziKolegu_Natjecaj">
+          <End Role="Natjecaj" Type="Self.Natjecaj" Multiplicity="1" />
+          <End Role="PredloziKolegu" Type="Self.PredloziKolegu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Natjecaj">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PredloziKolegu">
+              <PropertyRef Name="IDNatjecaj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredloziKolegu_RadnoMjesto">
+          <End Role="RadnoMjesto" Type="Self.RadnoMjesto" Multiplicity="1" />
+          <End Role="PredloziKolegu" Type="Self.PredloziKolegu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RadnoMjesto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PredloziKolegu">
+              <PropertyRef Name="IDRadnoMjesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredloziKolegu_TipPrijave">
+          <End Role="TipPrijave" Type="Self.TipPrijave" Multiplicity="1" />
+          <End Role="PredloziKolegu" Type="Self.PredloziKolegu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipPrijave">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PredloziKolegu">
+              <PropertyRef Name="IDTipPrijave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PI20_008_DBModelStoreContainer">
+          <EntitySet Name="FAQ" EntityType="Self.FAQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Natjecaj" EntityType="Self.Natjecaj" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Obrasci" EntityType="Self.Obrasci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PredloziKolegu" EntityType="Self.PredloziKolegu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RadnoMjesto" EntityType="Self.RadnoMjesto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StrateskiDokumenti" EntityType="Self.StrateskiDokumenti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipPrijave" EntityType="Self.TipPrijave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UputeZaRad" EntityType="Self.UputeZaRad" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PredloziKolegu_Natjecaj" Association="Self.FK_PredloziKolegu_Natjecaj">
+            <End Role="Natjecaj" EntitySet="Natjecaj" />
+            <End Role="PredloziKolegu" EntitySet="PredloziKolegu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredloziKolegu_RadnoMjesto" Association="Self.FK_PredloziKolegu_RadnoMjesto">
+            <End Role="RadnoMjesto" EntitySet="RadnoMjesto" />
+            <End Role="PredloziKolegu" EntitySet="PredloziKolegu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredloziKolegu_TipPrijave" Association="Self.FK_PredloziKolegu_TipPrijave">
+            <End Role="TipPrijave" EntitySet="TipPrijave" />
+            <End Role="PredloziKolegu" EntitySet="PredloziKolegu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PI20_008_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FAQ">
+          <Key>
+            <PropertyRef Name="FAQID" />
+          </Key>
+          <Property Name="FAQID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pitanje" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Odgovor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Natjecaj">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PredloziKolegu" Relationship="Self.FK_PredloziKolegu_Natjecaj" FromRole="Natjecaj" ToRole="PredloziKolegu" />
+        </EntityType>
+        <EntityType Name="PredloziKolegu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TelefonskiBroj" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DrustvenaMreza" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PismoZamolbe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Zivotopis" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IDTipPrijave" Type="Int32" Nullable="false" />
+          <Property Name="IDRadnoMjesto" Type="Int32" Nullable="false" />
+          <Property Name="IDNatjecaj" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Natjecaj" Relationship="Self.FK_PredloziKolegu_Natjecaj" FromRole="PredloziKolegu" ToRole="Natjecaj" />
+          <NavigationProperty Name="RadnoMjesto" Relationship="Self.FK_PredloziKolegu_RadnoMjesto" FromRole="PredloziKolegu" ToRole="RadnoMjesto" />
+          <NavigationProperty Name="TipPrijave" Relationship="Self.FK_PredloziKolegu_TipPrijave" FromRole="PredloziKolegu" ToRole="TipPrijave" />
+        </EntityType>
+        <EntityType Name="RadnoMjesto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PredloziKolegu" Relationship="Self.FK_PredloziKolegu_RadnoMjesto" FromRole="RadnoMjesto" ToRole="PredloziKolegu" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipPrijave">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PredloziKolegu" Relationship="Self.FK_PredloziKolegu_TipPrijave" FromRole="TipPrijave" ToRole="PredloziKolegu" />
+        </EntityType>
+        <EntityType Name="UputeZaRad">
+          <Key>
+            <PropertyRef Name="UputeZaRadID" />
+          </Key>
+          <Property Name="UputeZaRadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="URL" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Objavio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_PredloziKolegu_Natjecaj">
+          <End Role="Natjecaj" Type="Self.Natjecaj" Multiplicity="1" />
+          <End Role="PredloziKolegu" Type="Self.PredloziKolegu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Natjecaj">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PredloziKolegu">
+              <PropertyRef Name="IDNatjecaj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredloziKolegu_RadnoMjesto">
+          <End Role="RadnoMjesto" Type="Self.RadnoMjesto" Multiplicity="1" />
+          <End Role="PredloziKolegu" Type="Self.PredloziKolegu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RadnoMjesto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PredloziKolegu">
+              <PropertyRef Name="IDRadnoMjesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredloziKolegu_TipPrijave">
+          <End Role="TipPrijave" Type="Self.TipPrijave" Multiplicity="1" />
+          <End Role="PredloziKolegu" Type="Self.PredloziKolegu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipPrijave">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PredloziKolegu">
+              <PropertyRef Name="IDTipPrijave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PI20_008_DBEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FAQ" EntityType="Self.FAQ" />
+          <EntitySet Name="Natjecaj" EntityType="Self.Natjecaj" />
+          <EntitySet Name="PredloziKolegu" EntityType="Self.PredloziKolegu" />
+          <EntitySet Name="RadnoMjesto" EntityType="Self.RadnoMjesto" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipPrijave" EntityType="Self.TipPrijave" />
+          <EntitySet Name="UputeZaRad" EntityType="Self.UputeZaRad" />
+          <AssociationSet Name="FK_PredloziKolegu_Natjecaj" Association="Self.FK_PredloziKolegu_Natjecaj">
+            <End Role="Natjecaj" EntitySet="Natjecaj" />
+            <End Role="PredloziKolegu" EntitySet="PredloziKolegu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredloziKolegu_RadnoMjesto" Association="Self.FK_PredloziKolegu_RadnoMjesto">
+            <End Role="RadnoMjesto" EntitySet="RadnoMjesto" />
+            <End Role="PredloziKolegu" EntitySet="PredloziKolegu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredloziKolegu_TipPrijave" Association="Self.FK_PredloziKolegu_TipPrijave">
+            <End Role="TipPrijave" EntitySet="TipPrijave" />
+            <End Role="PredloziKolegu" EntitySet="PredloziKolegu" />
+          </AssociationSet>
+          <EntitySet Name="Obrasci" EntityType="PI20_008_DBModel.Obrasci" />
+          <EntitySet Name="StrateskiDokumenti" EntityType="PI20_008_DBModel.StrateskiDokumenti" />
+        </EntityContainer>
+        <EntityType Name="Obrasci">
+          <Key>
+            <PropertyRef Name="ObrazacID" />
+          </Key>
+          <Property Name="ObrazacID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Objavio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StrateskiDokumenti">
+          <Key>
+            <PropertyRef Name="StrateskiDokumentID" />
+          </Key>
+          <Property Name="StrateskiDokumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Objavio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PI20_008_DBModelStoreContainer" CdmEntityContainer="PI20_008_DBEntities2">
+          <EntitySetMapping Name="FAQ">
+            <EntityTypeMapping TypeName="PI20_008_DBModel.FAQ">
+              <MappingFragment StoreEntitySet="FAQ">
+                <ScalarProperty Name="FAQID" ColumnName="FAQID" />
+                <ScalarProperty Name="Pitanje" ColumnName="Pitanje" />
+                <ScalarProperty Name="Odgovor" ColumnName="Odgovor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Natjecaj">
+            <EntityTypeMapping TypeName="PI20_008_DBModel.Natjecaj">
+              <MappingFragment StoreEntitySet="Natjecaj">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PredloziKolegu">
+            <EntityTypeMapping TypeName="PI20_008_DBModel.PredloziKolegu">
+              <MappingFragment StoreEntitySet="PredloziKolegu">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TelefonskiBroj" ColumnName="TelefonskiBroj" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="DrustvenaMreza" ColumnName="DrustvenaMreza" />
+                <ScalarProperty Name="PismoZamolbe" ColumnName="PismoZamolbe" />
+                <ScalarProperty Name="Zivotopis" ColumnName="Zivotopis" />
+                <ScalarProperty Name="IDTipPrijave" ColumnName="IDTipPrijave" />
+                <ScalarProperty Name="IDRadnoMjesto" ColumnName="IDRadnoMjesto" />
+                <ScalarProperty Name="IDNatjecaj" ColumnName="IDNatjecaj" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RadnoMjesto">
+            <EntityTypeMapping TypeName="PI20_008_DBModel.RadnoMjesto">
+              <MappingFragment StoreEntitySet="RadnoMjesto">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PI20_008_DBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipPrijave">
+            <EntityTypeMapping TypeName="PI20_008_DBModel.TipPrijave">
+              <MappingFragment StoreEntitySet="TipPrijave">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UputeZaRad">
+            <EntityTypeMapping TypeName="PI20_008_DBModel.UputeZaRad">
+              <MappingFragment StoreEntitySet="UputeZaRad">
+                <ScalarProperty Name="UputeZaRadID" ColumnName="UputeZaRadID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Objavio" ColumnName="Objavio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Obrasci">
+            <EntityTypeMapping TypeName="PI20_008_DBModel.Obrasci">
+              <MappingFragment StoreEntitySet="Obrasci">
+                <ScalarProperty Name="Objavio" ColumnName="Objavio" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="ObrazacID" ColumnName="ObrazacID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StrateskiDokumenti">
+            <EntityTypeMapping TypeName="PI20_008_DBModel.StrateskiDokumenti">
+              <MappingFragment StoreEntitySet="StrateskiDokumenti">
+                <ScalarProperty Name="Objavio" ColumnName="Objavio" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="StrateskiDokumentID" ColumnName="StrateskiDokumentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

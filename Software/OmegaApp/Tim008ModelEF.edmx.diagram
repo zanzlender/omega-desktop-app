@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="930726e23b934ebbb6d4b59e902520dd" Name="Diagram1">
+        <EntityTypeShape EntityType="PI20_008_DBModel.FAQ" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PI20_008_DBModel.Natjecaj" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PI20_008_DBModel.PredloziKolegu" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PI20_008_DBModel.RadnoMjesto" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PI20_008_DBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PI20_008_DBModel.TipPrijave" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PI20_008_DBModel.UputeZaRad" Width="1.5" PointX="10.625" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="PI20_008_DBModel.FK_PredloziKolegu_Natjecaj" ManuallyRouted="false" />
+        <AssociationConnector Association="PI20_008_DBModel.FK_PredloziKolegu_RadnoMjesto" ManuallyRouted="false" />
+        <AssociationConnector Association="PI20_008_DBModel.FK_PredloziKolegu_TipPrijave" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PI20_008_DBModel.Obrasci" Width="1.5" PointX="8.5" PointY="4.75" />
+        <EntityTypeShape EntityType="PI20_008_DBModel.StrateskiDokumenti" Width="1.5" PointX="10.625" PointY="4.875" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
