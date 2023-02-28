@@ -1,4 +1,4 @@
-# Projekt sa gospodarstvom - Omega Software d.o.o
+# Projekt sa gospodarstvom - O. S. d.o.o
 
 ## Projektni tim (Tim - PI20-004)
 
