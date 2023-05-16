@@ -10,7 +10,7 @@ Antonio Kunštek | akunstek@foi.hr     | 0016133325 | kunstek47
 
 
 ## Opis domene
-Poslovni cilj cijelog projekta je napraviti nacrt i arhitekturu buduće interne aplikacije za interno korištenje zaposlenika Omege software koja bi pomogla zaposlenicima u snalaženju u tvrtki i informiranju, te provedbi administrativnih radnji koje moraju obavljati u svome svakodnevnome radu. Također bi kroz navedenu aplikaciju mogli dobiti upute o snalaženju u radnim prostorima tvrtke, kao i drugim aktivnostima zaposlenika vezanim za rad tvrtke. Na navedeni način bi se strukturirano upravljalo aministrativnim zahtjevima zaposlenika i kroz jedan kanal komunikacije razmjenjivalo potrebne informacije sa zaposlenicima.
+Poslovni cilj cijelog projekta je napraviti nacrt i arhitekturu buduće interne aplikacije za interno korištenje zaposlenika O.S.-a koja bi pomogla zaposlenicima u snalaženju u tvrtki i informiranju, te provedbi administrativnih radnji koje moraju obavljati u svome svakodnevnome radu. Također bi kroz navedenu aplikaciju mogli dobiti upute o snalaženju u radnim prostorima tvrtke, kao i drugim aktivnostima zaposlenika vezanim za rad tvrtke. Na navedeni način bi se strukturirano upravljalo aministrativnim zahtjevima zaposlenika i kroz jedan kanal komunikacije razmjenjivalo potrebne informacije sa zaposlenicima.
 
 Zaduženje našeg tima je izrada *Sučelja za prijavu* i sustav za autentifikaciju zaposlenika, kojima će biti dodijeljene uloge (administrator, zaposlenik, voditelj...) od strane *Administratora*, te će ovisno o ulozi moći pristupiti određenom početnom sučelju i funkcionalnostima. Također, potrebno je izraditi prikaz *Sučelja za administratora*, koji će moći dodavati nove zaposlenike, brisati trenutne zaposlenike, dodavati i mijenjati uloge zaposlenika, te dodavati i mijenjati sadržaj.
 
@@ -25,7 +25,7 @@ Zahtjevi od strane klijenta, odnosno funkcionalnosti/informacije koje aplikacija
 - Prijava inovacija
 - Prijava poteškoća u radu
 - Upute za rad
-- Prijedlog kolega za rad u Omegi
+- Prijedlog kolega za rad u O.S.-u
 - Tržnica
 - Dolasci i odlasci zaposlenika
 - Upute o snalaženju po radnim prostorima
